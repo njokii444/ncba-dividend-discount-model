@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+# Inputs
+dividend_current = 3.00  # Current dividend per share (KES)
+growth_rate = 0.05       # Dividend growth rate (5%)
+required_return = 0.14   # Required return / cost of equity (14%)
+
+# Step 1: Next year's dividend
+dividend_next = dividend_current * (1 + growth_rate)
+
+# Step 2: DDM Valuation
+intrinsic_value = dividend_next / (required_return - growth_rate)
+
+# Print results
+print("------ NCBA Dividend Discount Model ------")
+print(f"Next Year Dividend: {dividend_next:.2f} KES")
+print(f"Intrinsic Value Per Share: {intrinsic_value:.2f} KES")
+
+
+# Sensitivity Analysis
+
+growth_range = np.linspace(0.03, 0.07, 20)
+values = dividend_next / (required_return - growth_range)
+
+plt.figure(figsize=(8, 5))
+plt.plot(growth_range, values)
+plt.xlabel("Dividend Growth Rate")
+plt.ylabel("Intrinsic Value (KES)")
+plt.title("NCBA DDM Sensitivity to Growth Rate")
+plt.grid()
+plt.show()
